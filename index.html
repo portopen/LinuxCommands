@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Background colour: Grey; #404040; Top colour: Black; #2E2E2E ; Orange: #DE7900; Green: #1DD600; Blue: #00D0DA-->
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: monospace, monospace;
+    width: 100%;
+    min-height: 100vh; <!-- Without this code, the background will not display properly -->;
+    background: linear-gradient(to bottom, #2E2E2E 0%, #2E2E2E 17%, #404040 17%, #404040 100%);
+}
+
+h1 {
+    font-size: 45px;
+    font-weight: 700;
+    color: #DE7900;
+    text-align: center;
+    position: relative;
+    top: 40px;
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1DD600;
+    position: relative;
+    top: 100px;
+}
+
+.text-one {
+    font-size: 15px;
+    font-weight: 400;
+    color: #00D0DA;
+    position: relative;
+    top: 110px;
+}
+
+code {
+    background: none;
+    color: #1DD600;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+aside {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.button-container {
+    margin-top: 150px; /* Adjust this value to move buttons lower */
+}
+
+.sidebar-button {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #2E2E2E;
+    border: none;
+    color: #DE7900;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar-button:hover {
+    background: #343434;
+}
+
+main {
+    flex: 1; /* Allows the main section to take up the available space */
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+footer {
+    font-size: 15px;
+    font-weight: 400;
+    color: #1DD600;
+    position: relative;
+    bottom: -100px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: center; /* Center align the content */
+    }
+    
+    aside {
+        width: auto; /* Allow the aside to resize */
+        margin-bottom: 20px; /* Add space below the aside */
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to my website, neilhq.tech</h1>
+    </header>
+    <div class="container">
+        <aside>
+            <div class="button-container"> <!-- Added a container for buttons -->
+                <a href="neilhq.tech"<button class="sidebar-button button1">Passwords</button></a>
+                <a href="neilhq.tech/LinuxCommands"<button class="sidebar-button button2">Linux Commands</button></a>
+            </div>
+        </aside>
+        <main>
+            <section>
+                <h2>Linux commands useful to know.</h2>
+                <div class="text-one">
+                    <p>Display CPU information: <code>$ inxi -Fi</code></p>
+                    <p>Display server connections: <code>$ netstat -pnt</code></p>
+                    <p>Display public ip address: <code>$ host myip.opendns.com resolver1.opendns.com</code></p>
+                    <p>Display DNS servers: <code>$ resolvectl status</code></p>
+                    <p>Flush DNS cache: <code>$ sudo resolvectl flush-caches</code></p>
+                    <p>Display DNS cache statistics: <code>$ sudo resolvectl statistics</code></p>
+                    <p>Display and search for running processes: <code>$ ps aux | less</code></p>
+                    <p>Display process id of a service: <code>$ pidof ssh</code></p>
+                    <p>Disable apache2 server running at startup: <code>$ systemctl stop apache2 then $ sudo systemctl disable apache2</code></p>
+                    <p>Change clock timezone to local time: <code>$ timedatectl set-local-rtc 1 --adjust-system-clock</code></p>
+                    <p>Display Linux firewall status: <code>$ sudo ufw status numbered</code></p>
+                    <p>Delete Linux firewall rule: <code>$ sudo ufw delete [number]</code></p>
+                    <p>Delete multiple Linux firewall rules: <code>$ sudo ufw status numbered then $ for i in 10 9 8 7 6; do sudo ufw delete $i;done</code></p>
+                    <p>Block ip address in Linux firewall: <code>$ sudo ufw insert 1 deny from 100.20.30.40/32 comment "Block 100.20.30.40 SSH attempt"</code></p>
+                    <p>Display size of journal logs: <code>$ journalctl --disk-usage</code></p>
+                    <p>Reducue size of journal logs: <code>$ sudo journalctl --vacuum-time=2weeks or $ sudo journalctl --vacuum-size=100M</code></p>
+                    <p>Display SSH logs: <code>$ sudo journalctl -fu ssh or $ sudo journalctl -u ssh --since "3 days ago"</code></p>
+                    <p>Create a SOCKS proxy with SSH: <code>$ ssh -D [portnumber] -q -f -T -N -C user@ipaddress -p [portnumber]</code></p>
+                    <p>Display services running on systemd: <code>$ systemctl list-unit-files</code></p>
+                    <p>Display disabled services on systemd: <code>$ systemctl list-unit-files --type=service --state=disabled</code></p>
+                    <p>Display status of service on systemd: <code>$ sudo systemctl status [nameofservice]</code></p>
+                    <p>Empty/Overwrite a file without destroying the file: <code>$ printf "" > somefile.txt or $ sudo cp /dev/null somefile.txt</code></p>
+                    <p>Confirm if system boots via BIOS or UEFI: <code>$ ls /sys/firmware/efi or $ dmesg | grep "EFI v"</code></p>
+                    <p>Check if a port is open or closed using netcat: <code>$ netcat -w1 -z -v [HOST] [PORT] e.g. $ netcat -w1 -z -v example.com 443</code></p>
+                    <br>
+                    <p>A great resource for Linux administration by Elliot Cooper, can be found at <a href="https://bash-prompt.net/guides/" target="_blank" style="color:#DE7900;">bash-prompt.net</a>.</p> 
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>This website was designed by neilhq and is intended to resemble a Linux terminal. I hope you like it.</p>
+    </footer>
+</body>
+</html>
